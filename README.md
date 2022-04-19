@@ -37,6 +37,14 @@ Project Website: https://morris88826.github.io/GuitarTabPro/
 * Host the backend before using the website.
 * The results are stored in /backend/assets
 
+## Alternatives
+
+In /backend/src we provide main.py that can generate the guitar TAB without hosting the website.
+```
+cd src
+python main.py -p "path_to_the_video"
+```
+
 ## Demo
 The demo video can be found in /backend/assets/video.mp4
 
