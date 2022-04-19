@@ -37,7 +37,8 @@ Project Website: https://morris88826.github.io/GuitarTabPro/
 * Host the backend before using the website.
 * The results are stored in /backend/assets
 
-
+## Demo
+The demo video can be found in /backend/assets/video.mp4
 
 ## Functionalities
 - [x] Trim the video
