@@ -22,3 +22,6 @@ frontend/pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+
+# backend/assets
