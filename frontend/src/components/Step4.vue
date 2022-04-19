@@ -53,7 +53,6 @@
       </div>
       <div
         class="mt-3"
-        v-if="selected_info !== null"
         style="text-align: center"
       >
         <button class="btn btn-primary" @click="generateTAB">
