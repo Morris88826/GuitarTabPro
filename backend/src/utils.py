@@ -1,27 +1,40 @@
-from tkinter import image_names
 import cv2
 import os
+import shutil
+import glob
 import numpy as np
 from PIL import Image
 from skimage.metrics import structural_similarity as ssim
-import shutil
-import glob
 
 
-def video_to_images(path, out_dir):
+
+def video_to_images(path, out_dir="../assets/tmp", save=True):
     vidcap = cv2.VideoCapture(path)
     success, image = vidcap.read()
 
-    if os.path.exists(out_dir):
-        shutil.rmtree(out_dir)
-    os.mkdir(out_dir)
+    if save:
+        if os.path.exists(out_dir):
+            shutil.rmtree(out_dir)
+        os.mkdir(out_dir)
+    else:
+        images =[]
+        image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        images.append(image)
 
     count = 0
     while success:
-        cv2.imwrite(out_dir+"/frame_%d.png" % count, image)
+        if save:
+            cv2.imwrite(out_dir+"/frame_%d.png" % count, image)
+        else:
+            image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+            images.append(image)
         success, image = vidcap.read()
         count += 1
 
+    if save:
+        return
+    else:
+        return images
 
 def load_images(folder_dir):
     images_path = sorted(glob.glob(folder_dir+'/*'),
@@ -29,7 +42,7 @@ def load_images(folder_dir):
     images = []
     for image_path in images_path:
         images.append(np.array(Image.open(image_path)))
-    return images
+    return images, images_path
 
 
 def rgb_to_gray(img):
@@ -77,3 +90,4 @@ def select_frames(images_path, ROI):
             previous_img = img
 
     return imgs, imgs_path
+

@@ -102,7 +102,7 @@ def trimvideo():
 def getthumbnail():
     video_path = '../assets/trimmed_video.mp4'
     if os.path.exists(video_path):
-        video_to_images(video_path, out_dir='../assets/tmp')
+        video_to_images(video_path, out_dir='../assets/tmp', save=True)
 
         with open("../assets/tmp/frame_0.png", "rb") as image_file:
             encoded_string = base64.b64encode(
